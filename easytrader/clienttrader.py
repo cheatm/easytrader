@@ -18,6 +18,7 @@ from easytrader.log import logger
 from easytrader.utils.misc import file2dict
 from easytrader.utils.perf import perf_clock
 from win32gui import SetForegroundWindow, ShowWindow
+import easytrader.exceptions
 
 if not sys.platform.startswith("darwin"):
     import pywinauto
@@ -429,6 +430,7 @@ class ClientTrader(IClientTrader):
         else:
             editor = self._main.child_window(control_id=control_id, class_name="Edit")
             editor.select()
+            print(text)
             editor.type_keys(text)
 
     def _collapse_left_menus(self):
@@ -481,6 +483,9 @@ class ClientTrader(IClientTrader):
     def _handle_pop_dialogs(self, handler_class=pop_dialog_handler.PopDialogHandler):
         handler = handler_class(self._app)
 
+        # 处理超时时间
+        timeout = time.time() + 2
+
         while self.is_exist_pop_dialog():
             try:
                 title = self._get_pop_dialog_title()
@@ -490,6 +495,11 @@ class ClientTrader(IClientTrader):
             result = handler.handle(title)
             if result:
                 return result
+            
+            # 超时抛出异常
+            if time.time()>timeout:
+                raise easytrader.exceptions.TradeError(f"Window response timeout: {title}")
+
         return {"message": "success"}
 
 
