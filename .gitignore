@@ -76,3 +76,6 @@ target/
 tmp/
 
 secrets/
+*.json
+*.txt
+tests
