@@ -430,7 +430,6 @@ class ClientTrader(IClientTrader):
         else:
             editor = self._main.child_window(control_id=control_id, class_name="Edit")
             editor.select()
-            print(text)
             editor.type_keys(text)
 
     def _collapse_left_menus(self):
