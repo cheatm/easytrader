@@ -1,5 +1,4 @@
--i http://mirrors.aliyun.com/pypi/simple/
---trusted-host mirrors.aliyun.com
+-i https://pypi.tuna.tsinghua.edu.cn/simple
 beautifulsoup4==4.6.0
 bs4==0.0.1
 certifi==2018.4.16
