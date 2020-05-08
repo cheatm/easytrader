@@ -63,6 +63,10 @@ def use(broker, debug=False, **kwargs):
 
         return ClientTrader()
 
+    if broker.lower() in {"dummy"}:
+        from .dummytrader import DummyTrader
+        return DummyTrader()
+
     raise NotImplementedError
 
 
