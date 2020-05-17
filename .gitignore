@@ -79,3 +79,4 @@ secrets/
 *.json
 *.txt
 tests
+.DS_Store
