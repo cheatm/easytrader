@@ -133,7 +133,7 @@ class DummyTrader(object):
             "撤消数量": 0,
             "合同编号": entrust_no,
             "交易市场": market,
-            "股东账户": 0,
+            "股东帐户": 0,
         }
         self.pending_entrusts[entrust_no] = entrust
 
